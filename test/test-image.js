@@ -27,3 +27,21 @@ describe('Image component', function() {
         p.props.children.should.equal(description);
     });
 });
+
+import Gallery from '../js/components/gallery';
+describe('Gallery component', function() {
+    it('Renders the gallery', function() {
+        const url1 = "https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg";
+        const description1 = "Piture of waterfall";
+        const url2 = "https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg";
+        const description2 = "Piture of nature";
+
+        const images = [<Image url={url1} description={description1} />,
+                        <Image url={url2} description={description2} />]
+
+        const renderer = TestUtils.createRenderer();
+        renderer.render(<Gallery images={images} />);
+        const result = renderer.getRenderOutput();
+        result.props.className.should.equal('gallery');
+    });
+});
